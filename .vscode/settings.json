@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "satiator.h": "c",
+        "stddef.h": "c",
+        "boot.h": "c"
+    }
+}

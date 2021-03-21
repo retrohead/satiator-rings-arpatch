@@ -66,7 +66,7 @@ void try_boot_iso()
 
 		s_emulate("boot.desc");
 		while (is_cd_present());
-		while (!is_cd_present());
+		//while (!is_cd_present());
 		debug_print("booting");
 		s_mode(s_cdrom);
 		if(boot_disc() < 0)

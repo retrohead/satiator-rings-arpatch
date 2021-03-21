@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include <stddef.h>
+#include <string.h>
+#include <stdio.h>
 #include "satiator.h"
 #include "boot.h"
 #include "cd.h"
@@ -21,8 +23,8 @@ void debug_print(char * txt)
         fp = s_open(fn, FA_WRITE|FA_CREATE_ALWAYS);
         s_seek(fp, st->size - 1, 0);
     }
-    sprintf(debug_buf, "%s\r\n", txt);
-    satiatorWriteData(fp, debug_buf, strlen(debug_buf));
+    s_write(fp, txt, strlen(txt));
+    s_write(fp, "\r\n", 2);
     s_close(fp);
 }
 
