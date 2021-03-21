@@ -3,13 +3,15 @@
 The stock Action Replay firmware for the Sega Saturn doesn't play nice with a Satiator cartridge: you can't boot into the Satiator menu.
 This repo contains a patch to the AR firmware to make it behave.
 It's based on the AR 2.02C firmware.
+This is a modified version that boots the Satiator Rings replacement menu.
 
 # How do I install it?
 
-- Copy `ar_patched.bin` from `out/` to your Satiator SD card
+- Install Satiator Rings v3.0+ on your SD card using the Satiator Rings Config Tool.
+- Copy `ar_patched-satiator-rings.bin` and `boot.desc` to the root your Satiator SD card
 - Remove the AR cart from your Saturn
 - Boot into the Satiator menu (version 53 or higher)
-- Press C to exit to the main menu
+- Press B to exit to the main menu
 - Select Action Replay tools
 - Insert your AR cart. Do this straight, not at an angle, and you won't have a problem.
 - Back up your current AR firmware (if you haven't already)
@@ -17,7 +19,7 @@ It's based on the AR 2.02C firmware.
 
 # How do I use it?
 
-If a Satiator is present, it will boot to the Satiator menu instead of to the AR menu.
+If a Satiator is present, it will boot to the Satiator-Rings menu instead of to the AR menu.
 
 If you hold A on startup, it will boot to the AR menu instead.
 
