@@ -5,6 +5,7 @@
 #include "satiator.h"
 #include "boot.h"
 #include "cd.h"
+#include "smpc.h"
 
 extern uint32_t _load_end, _bss_end;
 
@@ -87,7 +88,7 @@ void reset_to_satiator(void) {
     );
 
     stop_slave_sh2();
-    boot_satiator();
+    restart_saturn();
 }
 
 extern const uint8_t binary_out_ar_original_trampoline_bin_start, binary_out_ar_original_trampoline_bin_end;

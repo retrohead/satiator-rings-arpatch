@@ -3,6 +3,7 @@
         "satiator.h": "c",
         "stddef.h": "c",
         "boot.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "cd.h": "c"
     }
 }
