@@ -61,18 +61,20 @@ int is_satiator_present(void) {
     return (CDB_REG_CR3 & 0xff) == 3;
 }
 
-void boot_satiator(void) {
+int boot_satiator(void) {
 
     s_mode(s_api);
     for (volatile int i=0; i<2000; i++)
         ;
     
+    s_emulate("");
     try_boot_iso();
 
     int (**bios_get_mpeg_rom)(uint32_t index, uint32_t size, uint32_t addr) = (void*)0x06000298;
     int ret = (*bios_get_mpeg_rom)(2, 2, 0x200000);
 
     ((void(*)(void))0x200000)();
+    return ret;
 }
 
 

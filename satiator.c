@@ -9,9 +9,10 @@
 #include "cd.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
-int memcmp (const * str1, const * str2, size_t count)
+int memcmp (const void * str1, const void * str2, size_t count)
 {
   register const unsigned char *s1 = (const unsigned char*)str1;
   register const unsigned char *s2 = (const unsigned char*)str2;

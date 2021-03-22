@@ -2,6 +2,7 @@
     "files.associations": {
         "satiator.h": "c",
         "stddef.h": "c",
-        "boot.h": "c"
+        "boot.h": "c",
+        "stdlib.h": "c"
     }
 }
