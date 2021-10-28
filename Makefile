@@ -12,7 +12,7 @@ CFLAGS += -DVERSION='"$(VERSION_STR)"'
 
 OUT_FILE=ar_patched-$(VERSION)
 
-CC := $(CROSS_COMPILE)gcc
+CC := $(CROSS_COMPILE)gcc-8.2.0
 LD := $(CROSS_COMPILE)ld
 OBJCOPY := $(CROSS_COMPILE)objcopy
 
