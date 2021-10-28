@@ -12,16 +12,8 @@ CFLAGS += -DVERSION='"$(VERSION_STR)"'
 
 OUT_FILE=ar_patched-$(VERSION)
 
-COMPILER_DIR=COMPILER
-ifeq ($(OS), Windows_NT)
-	CC=$(COMPILER_DIR)/WINDOWS/bin/sh-elf-gcc.exe
-	LD= $(COMPILER_DIR)/WINDOWS/sh-elf/bin/ld.exe
-else
-	CC=$(COMPILER_DIR)/LINUX/bin/sh-none-elf-gcc-8.2.0
-	LD= $(COMPILER_DIR)/LINUX/sh-none-elf/bin/ld
-endif
-
-
+CC := $(CROSS_COMPILE)gcc-8.2.0
+LD := $(CROSS_COMPILE)ld
 OBJCOPY := $(CROSS_COMPILE)objcopy
 
 AR_SRC_BIN := ARP_202C.BIN
