@@ -2,7 +2,7 @@ OBJECTS := trampoline.o init.o cd.o boot.o sh2int.o ar_original_trampoline.o sat
 
 OBJFILES := $(addprefix out/, $(OBJECTS))
 
-CROSS_COMPILE ?= sh-none-elf-
+CROSS_COMPILE ?= sh2-elf-
 
 CFLAGS := -fno-PIC -no-pie -Wall -ggdb -O2 -m2 -nostdlib -ffunction-sections -fdata-sections -ffreestanding
 
@@ -12,7 +12,7 @@ CFLAGS += -DVERSION='"$(VERSION_STR)"'
 
 OUT_FILE=ar_patched-$(VERSION)
 
-CC := $(CROSS_COMPILE)gcc-8.2.0
+CC := $(CROSS_COMPILE)gcc
 LD := $(CROSS_COMPILE)ld
 OBJCOPY := $(CROSS_COMPILE)objcopy
 
