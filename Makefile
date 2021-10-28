@@ -12,6 +12,7 @@ CFLAGS += -DVERSION='"$(VERSION_STR)"'
 
 OUT_FILE=ar_patched-$(VERSION)
 
+COMPILER_DIR=COMPILER/
 ifeq ($(OS), Windows_NT)
 	CC=$(COMPILER_DIR)/WINDOWS/bin/sh-elf-gcc.exe
 	LD= $(COMPILER_DIR)/WINDOWS/sh-elf/bin/ld.exe
