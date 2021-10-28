@@ -2,7 +2,7 @@ OBJECTS := trampoline.o init.o cd.o boot.o sh2int.o ar_original_trampoline.o sat
 
 OBJFILES := $(addprefix out/, $(OBJECTS))
 
-CROSS_COMPILE ?= sh-none-elf-gcc-8.2.0
+CROSS_COMPILE ?= sh-none-elf-
 
 CFLAGS := -fno-PIC -no-pie -Wall -ggdb -O2 -m2 -nostdlib -ffunction-sections -fdata-sections -ffreestanding
 
