@@ -33,6 +33,7 @@ out/arpatch.elf: arpatch.ld $(OBJFILES)
 out/ar_original_trampoline.o: $(AR_SRC_BIN)
 	dd if=$< of=out/ar_original_trampoline.bin bs=1 skip=3840 count=68
 	$(LD) -r -b binary -o $@ out/ar_original_trampoline.bin
+	objdump -d $@
 
 out/%.o: %.S
 	$(CC) $(CFLAGS) -c $< -o $@
