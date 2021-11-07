@@ -99,7 +99,7 @@ void boot_ar(void) {
     // restore the original data too
     memcpy((void*)0x280f00, &binary_out_ar_original_trampoline_bin_start, &binary_out_ar_original_trampoline_bin_end - &binary_out_ar_original_trampoline_bin_start);
     //((void(*)(void))0x288bec)();
-    ((void(*)(void))0x288c54)();
+    ((void(*)(void))0x28a09c)();
 }
 
 size_t strlen(const char *src) {
