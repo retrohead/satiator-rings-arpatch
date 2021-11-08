@@ -1,0 +1,48 @@
+OBJECTS := trampoline.o init.o cd.o boot.o sh2int.o ar_original_trampoline.o satiator.o pad.o sneaky_hook.o sneaky_hook_isr.o
+
+OBJFILES := $(addprefix out/, $(OBJECTS))
+
+COMPILER_DIR ?= ../../../Compiler
+
+# Set to point to your toolchain
+CC=$(COMPILER_DIR)/WINDOWS/bin/sh-elf-gcc.exe
+AR=$(COMPILER_DIR)/WINDOWS/sh-elf/bin/ar.exe
+AS=$(COMPILER_DIR)/WINDOWS/sh-elf/bin/as.exe
+LD=$(COMPILER_DIR)/WINDOWS/sh-elf/bin/ld.exe
+OBJCOPY=$(COMPILER_DIR)/WINDOWS/sh-elf/bin/objcopy.exe
+
+
+CFLAGS := -fno-PIC -no-pie -Wall -ggdb -O2 -m2 -nostdlib -ffunction-sections -fdata-sections -ffreestanding
+
+VERSION ?= $(shell git describe --always --dirty --match aotsrintsoierats)
+VERSION_STR ?= $(VERSION)
+AR_SRC_BIN := $(AR_FIRMWARE).BIN
+CFLAGS += -DVERSION='"$(VERSION_STR)"' -DAR_SRC_BIN='"$(AR_SRC_BIN)"'
+
+OUT_FILE=ar_patched-$(VERSION)-$(AR_FIRMWARE)
+
+
+out/$(OUT_FILE).bin: out/arpatch.srec patch_bin.py
+	# Saves go in the second half of the cart, so we only use the first half
+	python patch_bin.py $< $(AR_SRC_BIN) $@ 0x20000
+
+out/%.srec: out/%.elf
+	$(OBJCOPY) -O srec $< $@
+
+out/arpatch.elf: arpatch.ld $(OBJFILES) $(COMPILER_DIR)/WINDOWS/sh-elf/lib/libc.a
+	$(LD) -Map=out/arpatch.map --gc-sections -o $@ -T$^
+
+out/ar_original_trampoline.o: $(AR_SRC_BIN)
+	python extract_trampoline.py $<
+	$(LD) -r -b binary -o $@ out/ar_original_trampoline.bin
+
+out/%.o: %.S
+	$(CC) $(CFLAGS) -c $< -o $@
+
+out/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf out/
+
+.PHONY: default clean

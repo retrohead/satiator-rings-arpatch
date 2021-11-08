@@ -1,0 +1,7 @@
+@ECHO OFF
+echo %AR_FIRM_FILE%
+rm -rf %AR_FIRM_FILE%.BIN
+copy "firmware\%AR_FIRM_FILE%.BIN" "%AR_FIRM_FILE%.BIN"
+make AR_FIRMWARE=%AR_FIRM_FILE%
+rm -rf %AR_FIRM_FILE%.BIN
+exit

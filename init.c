@@ -98,8 +98,11 @@ void boot_ar(void) {
     memcpy((void*)0x280000, (void*)0x02000f00, 0x10000);
     // restore the original data too
     memcpy((void*)0x280f00, &binary_out_ar_original_trampoline_bin_start, &binary_out_ar_original_trampoline_bin_end - &binary_out_ar_original_trampoline_bin_start);
-    //((void(*)(void))0x288bec)();
-    ((void(*)(void))0x28a09c)();
+
+    if(!strcmp(AR_SRC_BIN, "AR_201_RED_LABEL.BIN"))
+        ((void(*)(void))0x28a09c)();
+    else
+        ((void(*)(void))0x288bec)();
 }
 
 size_t strlen(const char *src) {
